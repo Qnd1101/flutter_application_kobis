@@ -37,7 +37,7 @@ class KobisApi {
     }
   }
 
-  getMoiveDetail({required String movieCd}) async {
+  Future<dynamic> getMovieDetail({required String movieCd}) async {
     var uri = '$_site/movie/searchMovieInfo.json';
     uri = '$uri?key=$api_key';
     uri = '$uri&movieCd=$movieCd';
@@ -45,7 +45,7 @@ class KobisApi {
     if (response.statusCode == 200) {
       var movie =
           jsonDecode(response.body)['movieInfoResult']['movieInfo'] as dynamic;
-      print(movie['movieNm']);
+      // movie['movieNm'] => Map
       return movie;
     } else {
       return [];
