@@ -65,4 +65,32 @@ class KobisApi {
       return [];
     }
   }
+
+  Future<List<dynamic>> getSearchMovieList(
+      {required String searchType, required String searchValue}) async {
+    var uri = '$_site/movie/searchMovieList.json';
+    uri = '$uri?key=$api_key';
+    uri = '$uri&$searchType=$searchValue';
+
+    var response = await http.get(Uri.parse(uri));
+    // get : 주소창으로 정보를 넘기는 것 => 주소창에 정보가 다 보임
+    // post : 헤더에 정보를 넘김 => 주소창에 안보임
+
+    if (response.statusCode == 200) {
+      // 정상 수행된 코드
+      // print(response.body); // 정상 수행 됐는지 확인 => .body
+      // 데이터가 들어있는 경로 : boxOfficeResult.dailyBoxOfficeList
+      try {
+        var movies = jsonDecode(response.body)['movieListResult']['movieList']
+            as List<dynamic>; // dart가 알아 들을 수 있도록 변환
+        return movies;
+      } catch (e) {
+        return [];
+      }
+    } else {
+      // 정상적으로 수행되지 않은 코드
+      print('error');
+      return [];
+    }
+  }
 }
