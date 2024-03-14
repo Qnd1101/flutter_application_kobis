@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_kobis/home.dart';
 import 'package:flutter_application_kobis/rank_page.dart';
 import 'package:flutter_application_kobis/search_Page.dart';
 
@@ -11,11 +12,15 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   var _index = 0;
-  dynamic loadPage = const Text('검색하세용');
+  dynamic loadPage = const Center(
+      child: Text(
+    '박스오피스 화면으로 \n 이동해주세요',
+    style: TextStyle(fontSize: 40),
+  ));
 
   @override
   Widget build(BuildContext context) {
-    var menus = [const RankPage(), const RankPage(), const SearchPage()];
+    var menus = [const Home(), const RankPage(), const SearchPage()];
 
     List<BottomNavigationBarItem> items = [];
     items.add(

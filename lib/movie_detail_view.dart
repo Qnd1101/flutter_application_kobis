@@ -24,7 +24,7 @@ class _MovieDetailViewState extends State<MovieDetailView> {
               actions: [
                 TextButton(
                     onPressed: () {
-                      Navigator.pop(context); // 너 나가
+                      Navigator.pop(context);
                     },
                     child: const Text('닫기'))
               ],
